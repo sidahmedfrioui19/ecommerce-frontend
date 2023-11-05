@@ -42,45 +42,27 @@
 </div>
 <div class="navbar bg-base-100 border border-gray-100">
   <div class="navbar-start">
-    <ul class="menu menu-horizontal px-1">
-      <li tabindex="0">
+    <ul class="menu menu-horizontal">
+      <li tabindex="0" *ngFor="let category of categories">
         <details>
-          <summary>MEN</summary>
-          <ul class="p-2">
-            <div class="dropdown dropdown-right">
-              <label tabindex="0" class="btn m-1">Click</label>
-              <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Item 1</a></li>
-                <li><a>Item 2</a></li>
+          <summary>{{category.name}}</summary>
+          <ul class="menu">
+            <div class="dropdown dropdown-right block my-1 px-0 w-fit" *ngFor="let subcategory of category.subcategories">
+              <label tabindex="0" class="btn btn-wide hover:bg-slate-700 hover:text-white justify-start"><a class="hover:text-white bg-transparent hover:bg-transparent"><img class="w-10 inline mr-2" src={{subcategory.pictureUrl}} alt="">{{subcategory.name}}</a></label>
+              <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 my-0">
+                <li *ngFor="let type of subcategory.types" class="btn hover:bg-slate-700 hover:text-white h-fit my-1 items-start w-full">
+                  <a class="hover:text-white bg-transparent hover:bg-transparent"><img class="w-10 inline mr-2" src={{type.pictureUrl}} alt="">{{type.name}}</a>
+                </li>
               </ul>
             </div>
           </ul>
         </details>
       </li>
-      <li tabindex="0">
-        <details>
-          <summary>WOMEN</summary>
-          <ul class="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-        <li tabindex="0">
-          <details>
-            <summary>KIDS</summary>
-            <ul class="p-2">
-              <li><a>Submenu 1</a></li>
-              <li><a>Submenu 2</a></li>
-            </ul>
-          </details>
-          <li tabindex="0">
-            <details>
-              <summary>BEAUTY</summary>
-              <ul class="p-2">
-                <li><a>Submenu 1</a></li>
-                <li><a>Submenu 2</a></li>
-              </ul>
-            </details>
+      <li>
+        <a href="">New In</a>
+      </li>
+      <li>
+        <a href="">On Sale</a>
       </li>
     </ul>
   </div>
