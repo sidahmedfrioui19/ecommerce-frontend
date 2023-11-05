@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { ICartItem } from 'src/app/core/models/cartItem.entity';
 import { ICategory } from 'src/app/core/models/category.entity';
+import { CartService } from 'src/app/core/services/cart.service';
 import { ProductService } from 'src/app/core/services/product.service';
 
 @Component({
@@ -9,8 +11,9 @@ import { ProductService } from 'src/app/core/services/product.service';
 })
 export class NavbarComponent {
   public categories: ICategory[] = [];
+  public cartItems: ICartItem[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, public cartService: CartService) {}
 
   getCategories() {
     this.productService.getCategories().subscribe({
@@ -23,7 +26,12 @@ export class NavbarComponent {
     })
   }
 
+  getCartItems() {
+    this.cartItems = this.cartService.getCartItems();
+  }
+
   ngOnInit(): void {
     this.getCategories();
+    this.cartItems = this.cartService.getCartItems();
   }
 }

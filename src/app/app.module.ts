@@ -11,6 +11,8 @@ import { CartComponent } from './cart/cart.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     ProductListComponent,
     CartComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    WishlistComponent,
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     CoreModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [NavbarComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

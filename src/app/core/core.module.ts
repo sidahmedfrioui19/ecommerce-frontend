@@ -3,13 +3,15 @@ import { NgModule } from "@angular/core";
 import { HttpService } from "./http/http.service";
 import { ProductService } from "./services/product.service";
 import { HttpClient } from "@angular/common/http";
+import { CartService } from "./services/cart.service";
 
 @NgModule({
   declarations: [],
   providers: [
     HttpService,
     ProductService,
-    HttpClient
+    HttpClient,
+    CartService
   ],
   imports: [
     CommonModule
