@@ -5,6 +5,8 @@ import { ICategory } from '../core/models/category.entity';
 import { CartService } from '../core/services/cart.service';
 import { ICartItem } from '../core/models/cartItem.entity';
 import { NavbarComponent } from '../partials/navbar/navbar.component';
+import { StoreService } from '../core/services/store.service';
+import { IStore } from '../core/models/store.entity';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +16,13 @@ import { NavbarComponent } from '../partials/navbar/navbar.component';
 export class HomeComponent {
   public products: IProduct[] = [];
   public categories: ICategory[] = [];
+  public stores: IStore[] = [];
 
   constructor(
     private productService: ProductService,
     private cartService: CartService,
-    private navbar: NavbarComponent
+    private navbar: NavbarComponent,
+    private storeService: StoreService
   ) {}
 
   public cartItems: ICartItem[] = this.cartService.getCartItems();
@@ -45,6 +49,17 @@ export class HomeComponent {
     })
   }
 
+  getStores() {
+    this.storeService.getStores().subscribe({
+      next: (d) => {
+        this.stores = d;
+      },
+      error: (e) => {
+        throw e;
+      }
+    })
+  }
+
   addToCart(item: IProduct) {
     this.cartService.addItem(item);
     this.navbar.getCartItems();
@@ -54,5 +69,6 @@ export class HomeComponent {
   ngOnInit(): void {
     this.getProducts();
     this.getCategories();
+    this.getStores();
   }
 }

@@ -26,6 +26,8 @@ export class NavbarComponent {
     })
   }
 
+
+
   getCartItems() {
     this.cartItems = this.cartService.getCartItems();
   }

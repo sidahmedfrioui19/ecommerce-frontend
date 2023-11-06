@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./authentication.component.scss']
 })
 export class AuthenticationComponent {
+  activeTab: 'login' | 'register' = 'login';
 
+  showLogin() {
+    this.activeTab = 'login';
+  }
+
+  showRegister() {
+    this.activeTab = 'register';
+  }
 }

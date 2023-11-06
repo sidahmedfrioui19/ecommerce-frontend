@@ -4,6 +4,7 @@ import { HttpService } from "./http/http.service";
 import { ProductService } from "./services/product.service";
 import { HttpClient } from "@angular/common/http";
 import { CartService } from "./services/cart.service";
+import { StoreService } from "./services/store.service";
 
 @NgModule({
   declarations: [],
@@ -11,7 +12,8 @@ import { CartService } from "./services/cart.service";
     HttpService,
     ProductService,
     HttpClient,
-    CartService
+    CartService,
+    StoreService
   ],
   imports: [
     CommonModule

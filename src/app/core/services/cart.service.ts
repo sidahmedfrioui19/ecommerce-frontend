@@ -22,14 +22,25 @@ export class CartService {
   }
 
   addItem(item: IProduct) {
-    let newItem: ICartItem = {
-      id: this.lastId++,
-      item: item,
-      quantity: 1,
-      totalPrice: item.price
-    };
-    this.items = [...this.items, newItem];
+    const existingItem = this.items.find((cartItem) => cartItem.item.id === item.id);
+
+    if (existingItem) {
+      existingItem.quantity++;
+      existingItem.totalPrice = existingItem.item.price * existingItem.quantity;
+      this.items = this.items.map((cartItem) =>
+        cartItem.id === existingItem.id ? { ...cartItem, ...existingItem } : cartItem
+      );
+    } else {
+      let newItem: ICartItem = {
+        id: this.lastId++,
+        item: item,
+        quantity: 1,
+        totalPrice: item.price
+      };
+      this.items = [...this.items, newItem];
+    }
   }
+
 
   increaseQuantity(itemId: number) {
     if (this.items[itemId]) {
@@ -40,10 +51,12 @@ export class CartService {
   }
 
   decreaseQuantity(itemId: number) {
-    if (this.items[itemId] && this.items[itemId].quantity > 0) {
+    if (this.items[itemId] && this.items[itemId].quantity > 1) {
       this.items = this.items.map((item, index) =>
         index === itemId ? { ...item, quantity: item.quantity - 1 } : item
       );
+    } else {
+      this.deleteItem(itemId);
     }
   }
 
