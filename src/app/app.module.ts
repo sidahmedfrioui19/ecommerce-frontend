@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,13 +25,15 @@ import { AuthenticationComponent } from './authentication/authentication.compone
     CartComponent,
     ProductDetailsComponent,
     WishlistComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [NavbarComponent],
   bootstrap: [AppComponent]

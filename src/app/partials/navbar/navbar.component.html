@@ -11,9 +11,6 @@
     <input class="pl-10 pr-4 py-2 rounded-lg border bg-gray-100 border-gray-100 w-96 focus:outline-none" type="text" placeholder="Search products, brands and more..." />
   </div>
   <div class="navbar-end gap-2">
-    <ul class="menu menu-horizontal px-1">
-      <li><a>Track Your Order</a></li>
-    </ul>
     <a class="btn btn-ghost btn-circle" routerLink="/wishlist">
       <i class="fas fa-heart text-lg"></i>
     </a>
@@ -49,8 +46,8 @@
             <div class="dropdown dropdown-right block my-1 px-0 w-fit" *ngFor="let subcategory of category.subcategories">
               <label tabindex="0" class="btn btn-wide hover:bg-slate-700 hover:text-white justify-start"><a class="hover:text-white bg-transparent hover:bg-transparent"><img class="w-10 inline mr-2" src={{subcategory.pictureUrl}} alt="">{{subcategory.name}}</a></label>
               <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 my-0">
-                <li *ngFor="let type of subcategory.types" class="btn hover:bg-slate-700 hover:text-white h-fit my-1 items-start w-full">
-                  <a class="hover:text-white bg-transparent hover:bg-transparent"><img class="w-10 inline mr-2" src={{type.pictureUrl}} alt="">{{type.name}}</a>
+                <li *ngFor="let type of subcategory.types" class="hover:bg-slate-700 hover:text-white h-fit my-1 items-start w-full">
+                  <a [routerLink]="['/products', 'type', type.id]" class="hover:text-white bg-transparent hover:bg-transparent"><img class="w-10 inline mr-2" src={{type.pictureUrl}} alt="">{{type.name}}</a>
                 </li>
               </ul>
             </div>

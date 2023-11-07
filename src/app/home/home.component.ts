@@ -63,7 +63,6 @@ export class HomeComponent {
   addToCart(item: IProduct) {
     this.cartService.addItem(item);
     this.navbar.getCartItems();
-    console.log(this.cartService.getCurrentItemsLength());
   }
 
   ngOnInit(): void {

@@ -12,6 +12,10 @@ export class ProductService {
     return this.http.get('products', false);
   }
 
+  getById(id: any): Observable<IProduct> {
+    return this.http.get('products/' + id, false);
+  }
+
   getCategories(): Observable<ICategory[]> {
     return this.http.get('categories', false);
   }
