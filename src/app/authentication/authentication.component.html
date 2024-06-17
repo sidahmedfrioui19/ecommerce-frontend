@@ -1,0 +1,58 @@
+<div class="flex items-center justify-center h-auto m-16">
+  <div class="bg-white p-8 rounded shadow-md w-96">
+      <div class="flex mb-4">
+          <button class="w-1/2 py-2 focus:outline-none" (click)="showLogin()" [ngClass]="{ 'bg-slate-900 text-white': activeTab === 'login', 'bg-gray-200 text-gray-500': activeTab !== 'login'}">Login</button>
+          <button class="w-1/2 py-2 focus:outline-none" (click)="showRegister()" [ngClass]="{ 'bg-slate-900 text-white': activeTab === 'register', 'bg-gray-200 text-gray-500': activeTab !== 'register'}">Register</button>
+      </div>
+
+      <div id="loginForm" *ngIf="activeTab === 'login'">
+          <h2 class="text-2xl font-bold mt-5 mb-4 text-center">Sign In</h2>
+          <form>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="username">Email Adress</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Enter your email adress">
+              </div>
+              <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Password</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="Enter your password">
+              </div>
+              <button class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 px-4 rounded focus:outline-none" type="button">Sign In</button>
+          </form>
+      </div>
+
+      <div id="registerForm" *ngIf="activeTab === 'register'">
+          <h2 class="text-2xl font-bold mt-5 mb-4 text-center">Sign Up</h2>
+          <form [formGroup]="this.newUser">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newUsername">First Name</label>
+              <input formControlName="firstname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newUsername" type="text" placeholder="Enter your first name">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newUsername">Last Name</label>
+              <input formControlName="secondname" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newUsername" type="text" placeholder="Enter your last name">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newPassword">Email Adress</label>
+              <input formControlName="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="email" placeholder="Enter email adress">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newPassword">Password</label>
+              <input formControlName="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="password" placeholder="Enter a password">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newPassword">Confirm Password</label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="password" placeholder="Confirm password">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newPassword">Adress</label>
+              <input formControlName="adress" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="text" placeholder="Enter your home adress">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="newPassword">Phone Number</label>
+              <input formControlName="phoneNumber" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="newPassword" type="text" placeholder="Enter your phone number">
+            </div>
+            <button (click)="register()" class="w-full bg-slate-900 hover:bg-slate-950 text-white font-bold py-2 px-4 rounded focus:outline-none" type="button">Sign Up</button>
+          </form>
+      </div>
+  </div>
+</div>

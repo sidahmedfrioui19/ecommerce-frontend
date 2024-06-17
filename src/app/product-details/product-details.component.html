@@ -1,0 +1,75 @@
+<div class="bg-white mt-8 px-20 pb-16">
+  <div class="text-sm breadcrumbs m-10 pt-10">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/cart">{{product.category.name}}</a></li>
+      <li><a routerLink="/cart">{{product.subcategory.name}}</a></li>
+      <li><a routerLink="/cart">{{product.type?.name ? product.type.name : '' }}</a></li>
+    </ul>
+  </div>
+  <div class="flex justify-start items-start p-8 mx-0">
+    <!-- Left section with clickable images -->
+    <div class="flex flex-col space-y-4 mr-5">
+      <img (click)="setCurrentPicture(product.firstPictureUrl, 1)" [ngClass]="{'border border-gray-400': activeTab == 1}" src={{product.firstPictureUrl}} class="cursor-pointer rounded-md border border-gray-300 w-20 h-20" alt="Product Image 1">
+      <img (click)="setCurrentPicture(product.secondPictureUrl, 2)" [ngClass]="{'border border-gray-400': activeTab == 2}" src={{product.secondPictureUrl}} class="cursor-pointer rounded-md border border-gray-300 w-20 h-20" alt="Product Image 2">
+      <img (click)="setCurrentPicture(product.thirdPictureUrl, 3)" [ngClass]="{'border border-gray-400': activeTab == 3}" src={{product.thirdPictureUrl}} class="cursor-pointer rounded-md border border-gray-300 w-20 h-20" alt="Product Image 3">
+    </div>
+
+    <div>
+      <img src={{currentPicture}} class="w-fit h-96 rounded-md border border-gray-300" alt="Selected Product Image">
+    </div>
+
+    <div class="flex flex-col ml-10">
+      <h2 class="text-2xl font-bold">{{product.name}}</h2>
+      <p class="text-lg text-gray-700 mt-2 font-extrabold">${{product.price}}</p>
+      <p class="text-lg font-medium text-gray-700 mt-2">Colors:</p>
+      <p class="text-lg font-medium text-gray-700 mt-2">
+        <span *ngFor="let color of product.colors">
+          <div *ngIf="color === 'Black'" class="bg-black rounded-full w-5 h-5 inline-block mr-1"></div>
+          <div *ngIf="color === 'Silver'" class="bg-gray-400 rounded-full w-5 h-5 inline-block mr-1"></div>
+        </span>
+      </p>
+      <p class="text-lg font-medium text-gray-700 mt-2">Tags:</p>
+      <p class="text-lg font-medium text-gray-700 mt-2"><a href="">#{{product.subcategory.name}}</a>&nbsp;<a href="">#{{product.type.name}}</a></p>
+      <button class="btn btn-primary btn-outline text-white font-bold py-2 px-4 mt-4">
+        <i class="fas fa-heart"></i>Add to Whishlist
+      </button>
+      <button (click)="addToCart(product)" class="btn btn-primary text-white font-bold py-2 px-4 mt-4">
+        <i class="fas fa-shopping-bag"></i>Add to Cart
+      </button>
+    </div>
+
+    <div class="flex flex-col mx-16">
+      <div>
+        <div class="font-bold mb-5">Delivery Options</div>
+        <div class="border border-gray-300 p-4">
+          <p><span class="font-semibold"><i class="fas fa-truck mr-1 text-gray-600"></i>Flat Rate:</span> A fixed delivery fee applies for all orders.</p>
+        </div>
+        <div class="border border-gray-300 p-4 mt-5">
+          <p><span class="font-semibold"><i class="fas fa-money-bill mr-1 text-gray-600"></i>Cash on Delivery:</span> Payment is made upon delivery of the item.</p>
+        </div>
+        <div class="border border-gray-300 p-4 mt-5">
+          <p><span class="font-semibold"><i class="fas fa-shield-alt mr-1 text-gray-600"></i>Warranty:</span> We offer a warranty for our products. Contact us for details.</p>
+        </div>
+        <div class="border border-gray-300 p-4 mt-5">
+          <p><span class="font-semibold"><i class="fas fa-credit-card mr-1 text-gray-600"></i>Secure Online Payment</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="flex justify-center m-10">
+    <div class="tabs">
+      <a class="tab tab-bordered" (click)="setActive(1)" [ngClass]="{'tab-active': activeUserTab == 1}">Description</a>
+      <a class="tab tab-bordered" (click)="setActive(2)" [ngClass]="{'tab-active': activeUserTab == 2}">Reviews</a>
+    </div>
+  </div>
+  <div class="flex justify-center space-x-10 p-8 mx-0">
+    <p *ngIf="activeUserTab == 1">
+      {{product.description}}
+    </p>
+    <div *ngIf="activeUserTab == 2">
+      <textarea class="textarea textarea-bordered" placeholder="Type a review"></textarea>
+    </div>
+  </div>
+</div>

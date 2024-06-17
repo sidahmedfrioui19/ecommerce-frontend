@@ -1,0 +1,85 @@
+<div class="bg-white mt-8 pb-16">
+  <div class="text-sm breadcrumbs mx-24 pt-10">
+    <ul>
+      <li><a routerLink="/">Home</a></li>
+      <li><a routerLink="/cart">Cart</a></li>
+    </ul>
+  </div>
+  <h2 class="text-3xl mx-24 mt-3">Cart <span class="text-gray-500">({{cartService.getCurrentItemsLength()}} items)</span></h2>
+  <div class="flex h-auto w-full m-16 mt-5 mx-20">
+    <div class="w-3/4 bg-transparent p-4 mr-1">
+      <div class="w-3/4 float-left pr-6">
+        <table class="table">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th></th>
+              <th>Quantity</th>
+              <th>Unit Price</th>
+              <th>Total Price</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of items">
+              <td>
+                <div class="flex gap-3">
+                  <div class="items-center">
+                    <img src={{item.item.thumbnailUrl}} alt="Product Image" class="w-20 h-20 ml-3 rounded-md object-cover inline">
+                  </div>
+                  <div class="items-center">
+                    <h3 class="text-lg font-semibold">{{item.item.name}}</h3>
+                    <p class="text-gray-600">{{ item.item.description.length > 15 ? item.item.description.slice(0, 15) + '...' : item.item.description }}</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div class="flex bg-white items-center justify-center border border-gray-900 w-fit">
+                  <button class="w-10 h-10 text-gray-600 font-bold" (click)="this.decreaseQty(item.id)">-</button>
+                  <h5 class="w-10 text-gray-600 font-bold text-center mt-auto mb-auto">{{item.quantity}}</h5>
+                  <button class="w-10 h-10 text-gray-600 font-bold" (click)="this.increaseQty(item.id)">+</button>
+                </div>
+              </td>
+              <td>
+                <p class="text-gray-900 font-bold">${{item.totalPrice}}</p>
+              </td>
+              <td>
+                <p class="text-gray-900 font-bold">${{item.totalPrice * item.quantity}}</p>
+              </td>
+              <td>
+                <button class="btn bg-transparent" (click)="deleteItem(item.id)"><i class="fas fa-times"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Right Section for Total and Checkout -->
+      <div class="w-1/4 float-left">
+        <div class="bg-white shadow-md p-4 rounded-md">
+          <h2 class="text-xl font-semibold mb-4">Summary</h2>
+          <div class="flex justify-between mb-2">
+            <p class="font-bold">Total Items:</p>
+            <p>{{cartService.getCurrentItemsLength()}}</p>
+          </div>
+          <div class="flex justify-between mb-2 pb-3 border border-b-gray-100 border-transparent">
+            <p class="font-bold">Subtotal:</p>
+            <p>${{cartService.getCurrentTotal()}}</p>
+          </div>
+          <div class="flex justify-between mb-2 pt-3 pb-3 border border-b-gray-100 border-transparent">
+            <p class="font-bold">Shipping:</p>
+            <p>$0</p>
+          </div>
+          <div class="flex justify-between pt-3 pb-1 mb-2 font-bold">
+            <p>Total:</p>
+            <p>${{cartService.getCurrentTotal()}}</p>
+          </div>
+          <button class="bg-slate-900 text-white py-2 px-4 w-full hover:bg-slate-950">
+            Continue To Checkout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

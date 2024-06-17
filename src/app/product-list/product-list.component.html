@@ -1,0 +1,66 @@
+<div class="flex h-screen bg-white mt-8">
+  <div class="flex flex-col w-1/4 px-10 py-5 overflow-y-auto">
+    <h2 class="text-lg font-semibold">Categories</h2>
+    <div class="flex flex-col">
+      <label class="label cursor-pointer" *ngFor="let category of categories">
+        <span>{{category.name}}</span>
+        <input type="checkbox" class="checkbox checkbox-primary checkbox-xs" />
+      </label>
+    </div>
+
+    <h2 class="text-lg font-semibold mt-4">Brands</h2>
+    <div class="flex flex-col">
+      <label class="label cursor-pointer" *ngFor="let store of stores">
+        <span>{{store.name}}</span>
+        <input type="checkbox" class="checkbox checkbox-primary checkbox-xs" />
+      </label>
+    </div>
+
+    <h2 class="text-lg font-semibold mt-4">Colors</h2>
+    <div class="flex flex-col">
+      <span *ngFor="let color of colors">
+        <div *ngIf="color === 'Black'">
+          <label class="label cursor-pointer">
+            <span><div class="bg-black rounded-full w-5 h-5 inline-block mr-1 my-auto"></div>{{color}}</span>
+            <input type="checkbox" class="checkbox checkbox-primary checkbox-xs" />
+          </label>
+
+        </div>
+        <div *ngIf="color === 'Silver'">
+          <label class="label cursor-pointer">
+            <span><div class="bg-gray-500 rounded-full w-5 h-5 inline-block mr-1"></div>{{color}}</span>
+            <input type="checkbox" class="checkbox checkbox-primary checkbox-xs" />
+          </label>
+        </div>
+      </span>
+    </div>
+    <h2 class="text-lg font-semibold mt-4">Price</h2>
+    <input type="range" min="0" max="1000" value="30" class="range range-xs" />
+  </div>
+  <div class="flex flex-col w-3/4 p-5 overflow-y-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
+      <div *ngFor="let product of filtered | slice:0:5" class="rounded overflow-hidden shadow-sm relative bg-white">
+        <div class="relative">
+          <img class="w-auto h-80" src={{product.thumbnailUrl}} alt="Product Image">
+          <div class="absolute bg-slate-200 hover:bg-opacity-30 top-0 left-0 w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition-all duration-300">
+            <button (click)="addToCart(product)" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-2 px-4 rounded mr-2">
+              <i class="fas fa-shopping-bag"></i>
+            </button>
+            <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-2">
+              <i class="fas fa-heart"></i>
+            </button>
+            <a routerLink="/viewProduct/{{product.id}}" class="bg-blue-400 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2">
+              <i class="fas fa-eye"></i>
+            </a>
+          </div>
+        </div>
+        <div class="p-4 flex justify-between">
+          <div>
+            <div class="font-bold text-xl mb-2">{{product.name}}</div>
+          </div>
+          <p class="text-gray-900 text-lg font-bold">${{product.price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
